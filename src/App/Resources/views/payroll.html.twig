@@ -1,0 +1,22 @@
+{% extends "app.html.twig" %}
+{% block content %}
+    <title>Payments</title>
+    <h1>{{ payments.total }} Payments</h1>
+    {% if payments|length %}
+        <ul>
+            {% for payment in payments %}
+                {% set paymentDetail = payment.payment_details %}
+                <li><b>Payment Date:</b> {{ payment.created_at|date('Y-m-d') }}  <b>Reference:</b> {{ payment.reference }}<br>
+                    <b>Amount:</b> {{ payment.amount }} {{ payment.currency }} <b>Tip:</b> {{ payment.tip }} {{ payment.currency }}<br>
+                    <b>Restaurant:</b> {{ payment.location }} <b>Table Number:</b>  {{ payment.table_number }}<br>
+                    <b>Credit Card:</b> {{ payment.card_type }}
+                    {% if paymentDetail|length > 1 %}
+                        &nbsp;&nbsp;&nbsp;<a href="{{ path_for('payment-show', {'id': payment.id}) }}"><b>details</b></a>
+                    {% endif %}
+                    <br><br>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    {% include 'pagination.html.twig' %}
+{% endblock %}

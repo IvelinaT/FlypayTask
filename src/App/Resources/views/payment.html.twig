@@ -1,0 +1,32 @@
+{% extends "app.html.twig" %}
+{% block content %}
+    {% set paymentDetail = payment.payment_details %}
+    <title>Payment Ref# {{ payment.reference }}</title>
+    <h1>Payment Ref# {{ payment.reference }}</h1>
+    <div>
+        <b>Payment Date:</b> {{ payment.created_at|date('Y-m-d') }}<br>
+        <b>Reference:</b> {{ payment.reference }}<br>
+        <b>Amount:</b>{{ payment.amount }} {{ payment.currency }}<br>
+        <b>Tip:</b> {{ payment.tip }} {{ payment.currency }}<br>
+        <b>Restaurant:</b> {{ payment.location }}<br>
+        <b>Table Number:</b> {{ payment.table_number }}<br>
+        <b>Credit Card:</b> {{ payment.card_type }}
+        {% if paymentDetail|length > 1 %}
+            {% if paymentDetail.card_holder|length %}
+                <br>
+                <b>Cardholder:</b> {{ paymentDetail.card_holder }}
+            {% endif %}
+            {% if paymentDetail.phone_number|length %}
+                <br>
+                <b>Phone Number:</b> {{ paymentDetail.phone_number }}
+            {% endif %}
+            {% if paymentDetail.device|length %}
+                <br>
+                <b>Device:</b> {{ paymentDetail.device }}
+            {% endif %}
+        {% else %}
+            No details available
+        {% endif %}
+    </div>
+
+{% endblock %}
