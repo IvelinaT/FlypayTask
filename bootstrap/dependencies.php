@@ -13,15 +13,15 @@ $container['ApiController'] = function ($container) {
 };
 $container['view'] = function ($c) {
     $view = new \Slim\Views\Twig(__DIR__ . '/../src/App/Resources/views', [
-      'cache' => __DIR__ . '/../src/App/Resources/cache',
+        'cache' => __DIR__ . '/../src/App/Resources/cache',
     ]);
     $view->addExtension(new \Slim\Views\TwigExtension(
-      $c->router,
-      $c->request->getUri()
+        $c->router,
+        $c->request->getUri()
     ));
     return $view;
 };
-$container['debug'] = function() {
+$container['debug'] = function () {
     return true;
 };
 

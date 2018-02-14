@@ -3,6 +3,7 @@ namespace Flyt\database;
 class BaseSeeder extends \Phinx\Seed\AbstractSeed
 {
     const FACTORIES__PATH = __DIR__ . '/factories/';
+
     /**
      * @var \Illuminate\Database\Eloquent\Factory
      */

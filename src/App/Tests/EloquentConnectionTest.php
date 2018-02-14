@@ -1,5 +1,6 @@
 <?php
 use Illuminate\Database\Schema\Blueprint;
+
 class EloquentConnectionTest extends \PHPUnit\Framework\TestCase
 {
     /**
@@ -23,9 +24,9 @@ class EloquentConnectionTest extends \PHPUnit\Framework\TestCase
             $table->timestamps();
         });
         $capsule->table('test')->insert(
-          [
-            'reference' => 'FRC243191'
-          ]
+            [
+                'reference' => 'FRC243191'
+            ]
         );
         $test = $capsule->table('test')->first();
         $this->assertNotEmpty($test);

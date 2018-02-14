@@ -4,13 +4,21 @@ namespace Flyt\Middlewares;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
-class RouterMiddleware implements MiddlewareInterface {
+class RouterMiddleware implements MiddlewareInterface
+{
+    private $container;
 
-    public function __invoke(Request $request, Response $response, callable $next) {
+    public function __construct($container)
+    {
+        $this->container = $container;
+    }
 
-        $uri          = $request->getUri();
+    public function __invoke(Request $request, Response $response, callable $next)
+    {
+
+        $uri = $request->getUri();
         $current_path = $uri->getPath();
-        $route        = $request->getAttribute('route');
+        $route = $request->getAttribute('route');
 
         if ($route) {
 
@@ -20,6 +28,8 @@ class RouterMiddleware implements MiddlewareInterface {
 
             // We want to retrieve the whole url including all the get parameters to get the current url itself
             // Excluding page (pagination) parameter.
+
+
             if ($uri_page_parameter != '') {
                 $uri = str_replace(['?page=' . $uri_page_parameter, '&page=' . $uri_page_parameter], '', $uri);
             }
@@ -29,8 +39,8 @@ class RouterMiddleware implements MiddlewareInterface {
 
             // Route Information
             $this->container->view->getEnvironment()->addGlobal('uri', [
-              'link' => $uri,
-              'request_sent' => (isset($uri_request_sent[1])) ? true : false
+                'link' => $uri,
+                'request_sent' => (isset($uri_request_sent[1])) ? true : false
             ]);
             $this->container->view->getEnvironment()->addGlobal('current_route', $route_name);
             $this->container->view->getEnvironment()->addGlobal('current_path', $current_path);

@@ -81,7 +81,8 @@ class BaseTestCase extends TestCase
      *
      * @return \Psr\Http\Message\ResponseInterface|\Slim\Http\Response
      */
-    public function request($requestMethod, $requestUri, $requestData = null)    {
+    public function request($requestMethod, $requestUri, $requestData = null)
+    {
 
         return $this->runApp($requestMethod, $requestUri, $requestData);
     }
@@ -90,9 +91,9 @@ class BaseTestCase extends TestCase
     {
 
         $settings = require __DIR__ . '../../../../bootstrap/settings.php';
-        $this->app =$app = new App($settings);
+        $this->app = $app = new App($settings);
         $container = $this->app->getContainer();
-//boot eloquent connection
+        //boot eloquent connection
         $capsule = new \Illuminate\Database\Capsule\Manager;
 
         $capsule->addConnection($settings['db']);
@@ -100,7 +101,7 @@ class BaseTestCase extends TestCase
         $capsule->setAsGlobal();
 
         $capsule->bootEloquent();
-        $container['db'] = function ($container) use ($capsule){
+        $container['db'] = function ($container) use ($capsule) {
 
             return $capsule;
 

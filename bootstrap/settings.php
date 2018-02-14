@@ -1,18 +1,18 @@
 <?php
 return [
-  'displayErrorDetails' => true,
-  'determineRouteBeforeAppMiddleware' => false,
-  'addContentLengthHeader' => false,
-  'outputBuffering' => false,
+    'displayErrorDetails' => true,
+    'determineRouteBeforeAppMiddleware' => true,
+    'addContentLengthHeader' => false,
+    'outputBuffering' => false,
     'locale' => 'en',
     'db' => [
-      'driver' => 'mysql',
-      'host' => 'localhost',
-      'database' => 'flypay_task',
-      'username' => 'fly2315',
-      'password' => 'fly2315',
-      'charset' => 'utf8',
-      'collation' => 'utf8_unicode_ci',
+        'driver' => 'mysql',
+        'host' => 'localhost',
+        'database' => 'flypay_task',
+        'username' => 'fly2315',
+        'password' => 'fly2315',
+        'charset' => 'utf8',
+        'collation' => 'utf8_unicode_ci',
 
-  ],
+    ],
 ];

@@ -33,3 +33,4 @@ $app->add(function (Request $request, Response $response, callable $next) {
     return $next($request, $response);
 });
 
+$app->add(new \Flyt\Middlewares\RouterMiddleware($container));
