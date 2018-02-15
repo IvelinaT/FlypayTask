@@ -85,7 +85,7 @@ class ApiController
         if (isset($data['orderby'])) { // Ordering
             $query->orderBy($data['orderby'], $sort);
         } else {
-            $query->orderBy('created_at', 'desc');
+            $query->orderBy('created_at', $sort);
         }
         $page = (isset($data['page']) ? $data['page'] : 1);
         Paginator::currentPageResolver(function () use ($page) {
