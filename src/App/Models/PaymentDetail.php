@@ -29,6 +29,6 @@ class PaymentDetail extends Model
 
     public function payment()
     {
-        $this->belongsTo(Payment::class, 'payment_id', 'id');
+        return $this->belongsTo(Payment::class, 'payment_id', 'id');
     }
 }

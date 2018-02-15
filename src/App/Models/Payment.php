@@ -56,7 +56,7 @@ class Payment extends Model
     }
 
     /**
-     * Check if given user has favorited this article
+     * Check if payment detail available
      *
      * @param null $id
      *
