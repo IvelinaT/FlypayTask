@@ -1,22 +1,62 @@
 {% extends "app.html.twig" %}
 {% block content %}
-    <title>Payments</title>
-    <h1>{{ payments.total }} Payments</h1>
     {% if payments|length %}
-        <ul>
-            {% for payment in payments %}
-                {% set paymentDetail = payment.payment_details %}
-                <li><b>Payment Date:</b> {{ payment.created_at|date('Y-m-d') }}  <b>Reference:</b> {{ payment.reference }}<br>
-                    <b>Amount:</b> {{ payment.amount }} {{ payment.currency }} <b>Tip:</b> {{ payment.tip }} {{ payment.currency }}<br>
-                    <b>Restaurant:</b> {{ payment.location }} <b>Table Number:</b>  {{ payment.table_number }}<br>
-                    <b>Credit Card:</b> {{ payment.card_type }}
-                    {% if paymentDetail|length > 1 %}
+    <div class="col-sm-9">
+        {% if payments|length > 1%}<h2>{{ payments.total }} Payments</h2>{% endif %}
+    </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>
+                Payment Date
+            </th>
+            <th>
+                Reference
+            </th>
+            <th>
+                Amount
+            </th>
+            <th>
+                Tip
+            </th>
+            <th>
+                Restaurant
+            </th>
+            <th>
+                Table Number
+            </th>
+            <th>
+                Credit Card
+            </th>
+            <th>
+                Details
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for payment in payments %}
+            {% set paymentDetail = payment.payment_details %}
+            <tr>
+                <td>{{ payment.created_at|date('Y-m-d') }}</td>
+                <td>{{ payment.reference }}</td>
+                <td>{{ payment.amount }} {{ payment.currency }}</td>
+                <td>{{ payment.tip }} {{ payment.currency }}</td>
+                <td>{{ payment.location }}</td>
+                <td>{{ payment.table_number }}</td>
+                <td>{{ user.gender == 'F' ? 'Female': 'Male' }}</td>
+                <td>
+                    <span class="label label-primary">{% if paymentDetail|length > 1 %}
                         &nbsp;&nbsp;&nbsp;<a href="{{ path_for('payment-show', {'id': payment.id}) }}"><b>details</b></a>
-                    {% endif %}
-                    <br><br>
-                </li>
-            {% endfor %}
-        </ul>
-    {% endif %}
+                            {% else %}
+                            No
+                        {% endif %}</span>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
     {% include 'pagination.html.twig' %}
+        {% else %}
+        No Payments
+            {% endif %}
 {% endblock %}
