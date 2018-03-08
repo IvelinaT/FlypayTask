@@ -43,7 +43,7 @@
                 <td>{{ payment.tip }} {{ payment.currency }}</td>
                 <td>{{ payment.location }}</td>
                 <td>{{ payment.table_number }}</td>
-                <td>{{ user.gender == 'F' ? 'Female': 'Male' }}</td>
+                <td>{{ payment.card_type }}</td>
                 <td>
                     <span class="label label-primary">{% if paymentDetail|length > 1 %}
                         &nbsp;&nbsp;&nbsp;<a href="{{ path_for('payment-show', {'id': payment.id}) }}"><b>details</b></a>
